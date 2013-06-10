@@ -1,0 +1,64 @@
+/**
+\mainpage Experiment
+
+\section intro_sec Introduction
+
+This project is code written to experiment with various techniques.  As such, it is not generally useful except as example code.  \ref sorting gives the original history and justification of why you should not actually use this code for real work.
+
+Source Code Examples:
+- \ref DoubleLinkedListExample.cpp showing an example of using a DoubleLinkedList
+- \ref ListMergeSortExample.cpp showing an example of ListMergeSort on a DoubleLinkedList
+
+\section sorting Sorting
+The original intention was to review sorting.  Sorting is commonly used to teach algorithm complexity.  But, it is primarily an exercise in optimization.  Optimization typically looks at the details of what you are doing to find "better" or "the best" alternative.  Often, people think of this in terms of processing time, but you can also optimize for memory usage and usage of other resources such as minimizing usage of a network connection, database access, or file access.
+
+Merge Sort illustrates this well.  Traditionally, it is implemented with two arrays reading from one and populating to another. This is due to the nature of the algorithm: it reads two sequential groups of elements and merges them together.  Consider sorting the two groups (3, 4) and (1, 2).  Clearly, in an ascending sort, the 1 belongs where the 3 is.  It would be a hassle to remove the elements, then put them in place.  So, instead, we sort to a second array which has space which can be overwritten.
+
+If we are updating a Linked List, we could freely let us move the element without any copying.  But, everything has a price.  We have to update the pointers in the linked list -- and that means we have to actually have the pointers to update.  For a double linked list on a 64 bit build, this is +16 bytes per item (at least).  Well, if an item is larger than 16 bytes, then that uses less memory and still avoids copying -- which might involve memory allocations...
+
+Clearly, having a "general" discussion of sorting breaks down into a bunch of ifs to be resolved by the reader.  Which is precisely why this code is not particularly relevant to any particular case.  Its optimizations are not even based upon any real case -- it is optimized based on what I wanted to experiment with.
+
+And, more than that, you would be better off using an STL linked list and sort algorithm -- it is a few lines of easy to maintain code for you to write and it is known to work well.  Until you have performance tools telling you that you need to optimize it, there is no reason at all to spend the time now (and later in maintenance) on optimizing code -- which often means complicating it.  If you need to, you should already have working test cases to test against.
+
+
+\section license License
+
+This project is released under the [BSD 3-Clause License](http://opensource.org/licenses/BSD-3-Clause).
+
+> Copyright (c) 2013, Komodo Does Inc
+> 
+> All rights reserved.
+> 
+> Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+> 
+> - Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+> 
+> - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+> 
+> - Neither the name of the Komodo Does Inc nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+> 
+> THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+> 
+
+
+\section install_sec Installation
+
+Developoment is done against GCC 4.7.  Compatibily should be gauged based upon the versions developed and used against.
+
+Building:
+- Build with: make all
+- Build documentation with: make doxygen
+- Run the test with: make doxygen
+- All of the above with: make all
+
+Usage:
+- Include the headers in include
+- Note: This is currently a header-only library, thus there is no library file to link against
+
+\section other-pages Other Pages
+
+- Examples -- Examples are located in the section Examples
+- @ref todo -- Items to be done
+- @ref support-tools -- Design of the tools the deliver the project, not generally of use to the library user
+
+*/
