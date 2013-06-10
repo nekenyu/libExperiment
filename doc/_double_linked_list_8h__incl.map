@@ -1,0 +1,7 @@
+<map id="include/DoubleLinkedList.h" name="include/DoubleLinkedList.h">
+<area shape="rect" id="node2" href="$_double_linked_list_impl_8h.html" title="Implementation details of a DoubleLinkedList." alt="" coords="17,80,167,107"/>
+<area shape="rect" id="node4" href="$_iterator_8h.html" title="Iterator definition." alt="" coords="199,80,268,107"/>
+<area shape="rect" id="node6" href="$_double_linked_list_8cpp.html" title="Implementations of longer template methods of the DoubleLinkedList.h file." alt="" coords="293,80,435,107"/>
+<area shape="rect" id="node3" href="$_double_linked_list_impl_8cpp.html" title="Implementations of longer template methods of the DoubleLinkedListImpl.h file." alt="" coords="5,155,171,181"/>
+<area shape="rect" id="node5" href="$_iterator_8cpp.html" title="Iterator.cpp" alt="" coords="195,155,279,181"/>
+</map>
