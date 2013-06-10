@@ -85,7 +85,7 @@ class ArrayOfPointerTester {
     T* arrayOfPointers[length];
     {
       T* iter = data;
-      for(int i = 0; i < length; ++i, ++iter) {
+      for(size_t i = 0; i < length; ++i, ++iter) {
 	arrayOfPointers[i] = new T(*iter);
       }
     }
@@ -103,8 +103,8 @@ class ArrayOfPointerTester {
     // Delete pointers in arrayOfPointers
     {
       T* iter = data;
-      for(int i = 0; i < length; ++i, ++iter) {
-	delete arrayOfPointers[i];
+      for(size_t index = 0; index < length; ++index, ++iter) {
+	delete arrayOfPointers[index];
       }
     }
   }

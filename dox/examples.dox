@@ -2,3 +2,8 @@
 \example DoubleLinkedListExample.cpp
 Examples of using a DoubleLinkedList.
 */
+
+/**
+\example ListMergeSortExample.cpp
+Examples of using a ListMergeSort on a DoubleLinkedList.
+*/

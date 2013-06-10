@@ -63,6 +63,8 @@ namespace Experiment {
     current = rhs.current;
 
     list->addIterator(this);
+
+    return *this;
   }
   
   /** \return true if this iterator is at the same position in the same list as rhs,
