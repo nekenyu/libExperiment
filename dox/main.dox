@@ -9,6 +9,7 @@ Source Code Examples:
 - \ref DoubleLinkedListExample.cpp showing an example of using a DoubleLinkedList
 - \ref ListMergeSortExample.cpp showing an example of ListMergeSort on a DoubleLinkedList
 
+
 \section sorting Sorting
 The original intention was to review sorting.  Sorting is commonly used to teach algorithm complexity.  But, it is primarily an exercise in optimization.  Optimization typically looks at the details of what you are doing to find "better" or "the best" alternative.  Often, people think of this in terms of processing time, but you can also optimize for memory usage and usage of other resources such as minimizing usage of a network connection, database access, or file access.
 
@@ -19,6 +20,12 @@ If we are updating a Linked List, we could freely let us move the element withou
 Clearly, having a "general" discussion of sorting breaks down into a bunch of ifs to be resolved by the reader.  Which is precisely why this code is not particularly relevant to any particular case.  Its optimizations are not even based upon any real case -- it is optimized based on what I wanted to experiment with.
 
 And, more than that, you would be better off using an STL linked list and sort algorithm -- it is a few lines of easy to maintain code for you to write and it is known to work well.  Until you have performance tools telling you that you need to optimize it, there is no reason at all to spend the time now (and later in maintenance) on optimizing code -- which often means complicating it.  If you need to, you should already have working test cases to test against.
+
+\section techniques Techniques
+
+The unit tests are templated providing a means of encoding the test data and methods of executing tests per container or Sort algorithm by changing test-case template parameters.
+
+ListMergeSort.h has all code and comments inline.  This makes it hard to see the full structure of the class from the source code.  The DoubleLinkedList code separates the larger method definitions into .cpp files included from the .h files.  This adds an amount of boiler plate for the templated classes.  The users of this code would look at the doxygen, which groups by class.  So, it is more or less just a maintance issue, for which I like the included .cpp files.  Though, I don't like that a user could include a .cpp file directly and attempt to work with it.
 
 
 \section license License
