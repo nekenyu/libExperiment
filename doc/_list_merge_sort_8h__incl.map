@@ -1,8 +1,9 @@
 <map id="include/ListMergeSort.h" name="include/ListMergeSort.h">
-<area shape="rect" id="node2" href="$_double_linked_list_8h.html" title="Double Linked List defintion." alt="" coords="169,80,297,107"/>
-<area shape="rect" id="node3" href="$_double_linked_list_impl_8h.html" title="Implementation details of a DoubleLinkedList." alt="" coords="17,155,167,181"/>
-<area shape="rect" id="node5" href="$_iterator_8h.html" title="Iterator definition." alt="" coords="199,155,268,181"/>
-<area shape="rect" id="node7" href="$_double_linked_list_8cpp.html" title="Implementations of longer template methods of the DoubleLinkedList.h file." alt="" coords="293,155,435,181"/>
-<area shape="rect" id="node4" href="$_double_linked_list_impl_8cpp.html" title="Implementations of longer template methods of the DoubleLinkedListImpl.h file." alt="" coords="5,229,171,256"/>
-<area shape="rect" id="node6" href="$_iterator_8cpp.html" title="Iterator.cpp" alt="" coords="195,229,279,256"/>
+<area shape="rect" id="node1" title="DoubleLinkedList&#45;based Merge Sort." alt="" coords="175,5,350,32"/>
+<area shape="rect" id="node2" href="$_double_linked_list_8h.html" title="Double Linked List defintion." alt="" coords="190,80,335,107"/>
+<area shape="rect" id="node3" href="$_double_linked_list_impl_8h.html" title="Implementation details of a DoubleLinkedList." alt="" coords="19,155,194,181"/>
+<area shape="rect" id="node5" href="$_iterator_8h.html" title="Iterator definition." alt="" coords="222,155,303,181"/>
+<area shape="rect" id="node7" href="$_double_linked_list_8cpp.html" title="Implementations of longer template methods of the DoubleLinkedList.h file." alt="" coords="328,155,488,181"/>
+<area shape="rect" id="node4" href="$_double_linked_list_impl_8cpp.html" title="Implementations of longer template methods of the DoubleLinkedListImpl.h file." alt="" coords="5,229,195,256"/>
+<area shape="rect" id="node6" href="$_iterator_8cpp.html" title=" " alt="" coords="219,229,315,256"/>
 </map>

@@ -5,5 +5,7 @@ var namespace_experiment =
     [ "Iterator", "class_experiment_1_1_iterator.html", "class_experiment_1_1_iterator" ],
     [ "NoSortMetrics", "class_experiment_1_1_no_sort_metrics.html", "class_experiment_1_1_no_sort_metrics" ],
     [ "ListMergeSort", "class_experiment_1_1_list_merge_sort.html", "class_experiment_1_1_list_merge_sort" ],
-    [ "PointerLess", "class_experiment_1_1_pointer_less.html", "class_experiment_1_1_pointer_less" ]
+    [ "PointerLess", "class_experiment_1_1_pointer_less.html", "class_experiment_1_1_pointer_less" ],
+    [ "moveBefore", "namespace_experiment.html#a06e4a74bef3dc8c17439e4ce47cc9b9a", null ],
+    [ "swap", "namespace_experiment.html#ad79468f3371e659fb69f4f0816cb428f", null ]
 ];

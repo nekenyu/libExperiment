@@ -1,3 +1,4 @@
 <map id="Experiment::DoubleLinkedListImpl::DataNode&lt; T &gt;" name="Experiment::DoubleLinkedListImpl::DataNode&lt; T &gt;">
-<area shape="rect" id="node2" href="$class_experiment_1_1_double_linked_list_impl_1_1_node.html" title="DoubleLinkedList internal Node base class." alt="" coords="5,6,173,47"/>
+<area shape="rect" id="node1" title="DoubleLinkedList internal Node holding Data." alt="" coords="5,95,199,136"/>
+<area shape="rect" id="node2" href="$class_experiment_1_1_double_linked_list_impl_1_1_node.html" title="DoubleLinkedList internal Node base class." alt="" coords="5,5,199,47"/>
 </map>
