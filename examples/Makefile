@@ -9,23 +9,17 @@ TOPDIR= ../
 
 SRC:= $(wildcard *.cpp)
 DEPS= $(patsubst %.cpp,%.d,$(SRC))
-OBJS= $(patsubst %.cpp,%.o,$(SRC))
 EXES= $(patsubst %.cpp,%.exe,$(SRC))
 
 all: $(EXES)
 
-%.o: %.cpp
-	@$(MAKEDEPEND)
-	$(CXX) $(CXXFLAGS) -c $<
-
-%.exe: %.o
-	@$(MAKEDEPEND)
+%.exe: %.cpp
+	$(MAKEDEPEND)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 -include $(DEPS)
 
 clean:
-	rm -f $(OBJS)
 
 cleaner: clean
 	rm -f $(DEPS)
