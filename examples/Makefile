@@ -14,7 +14,7 @@ EXES= $(patsubst %.cpp,%.exe,$(SRC))
 all: $(EXES)
 
 %.exe: %.cpp
-	$(MAKEDEPEND)
+	@$(MAKEDEPEND)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 -include $(DEPS)
