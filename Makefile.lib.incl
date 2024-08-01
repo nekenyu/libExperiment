@@ -1,0 +1,19 @@
+#
+# Makefile.lib.incl
+#
+# Defines this library for building.
+#
+# Note: This is a header-only library, not library file exists.
+#
+# Example usage:
+#	include (path-to-this-file)
+#	CXXFLAGS+= ${LIB_EXPERIMENT_FLAGS}
+#	LIBS+= ${LIB_EXPERIMENT_LIBS}
+
+LIB_EXPERIMENT_NAME= Experiment
+# Note: := assigns this when __this__ file is included, using the most recent include -- the lastword
+LIB_EXPERIMENT_TOPDIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+LIB_EXPERIMENT_FILE=
+
+LIB_EXPERIMENT_FLAGS= -I ${LIB_EXPERIMENT_TOPDIR}/include
+LIB_EXPERIMENT_LIBS=
