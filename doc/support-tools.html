@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('support-tools.html',''); initResizable
 <ul>
 <li>GNU make</li>
 <li>doxygen</li>
-<li>cppunit</li>
+<li>unit-test</li>
 </ul>
 <dl class="section note"><dt>Note</dt><dd>This page is not generally of use to the library user.</dd></dl>
 <h1><a class="anchor" id="gnu-make"></a>
@@ -99,7 +99,7 @@ GNU Make</h1>
 <p>Common information is in Makefile.config.incl including compiler flags, where to include header files, how to build dependencies, the actual library built, and how to use the library within the GNU Make environment of the project.</p>
 <p>The top-level Makefile delegates the targets all, clean, cleaner and cleanest to the subdirectories in proper dependency order and adds some additional tasks.</p>
 <p>The src/ Makefile builds the library.</p>
-<p>The cppunit/ Makefile builds a CppUnit test command.</p>
+<p>The test/ Makefile builds a unit-test command.</p>
 <p>The examples/ Makefile compiles each example file to help ensure they remain syntaticly valid.</p>
 <p>Common GNU Make Targets:</p><ul>
 <li>all &ndash; builds source</li>
@@ -110,23 +110,23 @@ GNU Make</h1>
 <p>Top-Level Only GNU Make Targets:</p><ul>
 <li>runTest &ndash; runs the test binary</li>
 <li>doxygen &ndash; builds doxygen documentation</li>
-<li>build &ndash; builds all source and doxygen documentation, and runs the CppUnit tests</li>
+<li>world &ndash; builds all source and doxygen documentation, and runs the unit tests</li>
 </ul>
 <h1><a class="anchor" id="doxygen"></a>
 Doxygen</h1>
 <p>We put doxygen comments in the header for ease of maintenance. Causing extraneous building for documentaiton changes is not a significant concern on a project this small.</p>
 <p>We have a directory of .dox files, named dox/, to provide all of the documentation for the project as a trial of the facility and its usefulness. It started because the usual documentation files obviously could not be linked to from the doxygen generated files neatly.</p>
 <p>We have a directory of examples, named examples, to provide compiled (thus syntatically valid, examples.</p>
-<h1><a class="anchor" id="cppunit"></a>
-CppUnit</h1>
-<p>We build CppUnit as a main function that links to the built library. The library saves us from hacking around which "main" file to use. </p>
+<h1><a class="anchor" id="unit-test"></a>
+Unit-Test</h1>
+<p>We build a unit-test with googletest using a main function from a googletest library. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Aug 1 2024 10:23:35 for Experimental Code by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Aug 5 2024 17:50:56 for Experimental Code by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

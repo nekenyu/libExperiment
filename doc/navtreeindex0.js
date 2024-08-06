@@ -126,8 +126,8 @@ var NAVTREEINDEX0 =
 "namespaces.html":[3,0],
 "pages.html":[],
 "support-tools.html":[1],
-"support-tools.html#cppunit":[1,2],
 "support-tools.html#doxygen":[1,1],
 "support-tools.html#gnu-make":[1,0],
+"support-tools.html#unit-test":[1,2],
 "todo.html":[2]
 };
