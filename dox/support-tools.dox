@@ -3,7 +3,7 @@
 
 This page documents how we use the following tools:
 - GNU make
-- doxygen
+- docs
 - unit-test
 
 \note This page is not generally of use to the library user.
@@ -30,10 +30,10 @@ Common GNU Make Targets:
 
 Top-Level Only GNU Make Targets:
 - runTest -- runs the test binary
-- doxygen -- builds doxygen documentation
+- docs -- builds doxygen documentation
 - world -- builds all source and doxygen documentation, and runs the unit tests
 
-\section doxygen Doxygen
+\section docs Docs
 
 We put doxygen comments in the header for ease of maintenance.  Causing extraneous building for documentaiton changes is not a significant concern on a project this small.
 
