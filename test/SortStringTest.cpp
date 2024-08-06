@@ -15,250 +15,246 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  * Test Cases with string data for Sort algorithms.  Currently: ListMergeSort.
  */
 
+
 #include <stdexcept>
-#include <cppunit/extensions/HelperMacros.h>
 
 #include "DoubleLinkedList.h"
+#include "ListMergeSort.h"
+#include "Predicates.h"
+
 #include "SortHelp.h"
 
-/** Template CppUnit::Fixture providing the test data string-based Sort
- * algorithms.
- *
- * This is used by creating a typedef with the template parameters specified and
- * providing it to CPPUNIT_TEST_SUITE_REGISTRATION.
- *
- * \tparam T the actual data type being tested
- * \tparam Tester the container-specific test code
- */
-template<class T, class Tester>
-class SortStringTest : public CppUnit::TestFixture {
-  CPPUNIT_TEST_SUITE(SortStringTest);
-  CPPUNIT_TEST(sortNone);
-  CPPUNIT_TEST(sortOne);
+#include "gtest/gtest.h"
 
-  CPPUNIT_TEST(sortTwoIn);
-  CPPUNIT_TEST(sortTwoRev);
-
-  CPPUNIT_TEST(sortThreeABC); // in
-  CPPUNIT_TEST(sortThreeACB);
-  CPPUNIT_TEST(sortThreeBAC);
-  CPPUNIT_TEST(sortThreeBCA);
-  CPPUNIT_TEST(sortThreeCAB);
-  CPPUNIT_TEST(sortThreeCBA); // reverse
-
-  CPPUNIT_TEST(sortTwoOfTwoEqual); 
-  CPPUNIT_TEST(sortTwoOfThreeEqual); 
-  CPPUNIT_TEST(sortThreeOfThreeEqual); 
-
-  CPPUNIT_TEST(sortEmptyFirst);
-  CPPUNIT_TEST(sortShorterMatchFirst);
-  CPPUNIT_TEST(sortFirstCharsFirst);
-  CPPUNIT_TEST(sortUppercaseFirst);
-  CPPUNIT_TEST(sortNumbersFirst);
-  CPPUNIT_TEST(sortNumbersAsStrings);
-  CPPUNIT_TEST(sortSpecial);
-  CPPUNIT_TEST(sortLargeA); 
-
-  CPPUNIT_TEST_SUITE_END();
-
-private:
-  /** Container-specific test code */
-  Tester tester;
-
-public:
-  /*
-   *
-   * Actual Test Cases
-   *
-   */
-
-  /*
-   * Trivial Cases
-   */
-  void sortNone() {
-    tester.testEmpty();
-  }
-
-  void sortOne() {
-    T data[] = { "a" };
-    T expected[] = { "a" };
-
-    tester.test(data, expected);
-  }
-
-  /*
-   * Two elements
-   */
-
-  void sortTwoIn() {
-    T data[] = { "a", "b" };
-    T expected[] = { "a", "b" };
-
-    tester.test(data, expected);
-  }
-
-  void sortTwoRev() {
-    T data[] = { "b", "a" };
-    T expected[] = { "a", "b" };
-
-    tester.test(data, expected);
-  }
-
-  /*
-   * Three unique element permutations
-   */
-  void sortThreeABC() { // In Order
-    T data[] = { "a", "b", "c" };
-    T expected[] = { "a", "b", "c" };
-
-    tester.test(data, expected);
-  }
-  
-  void sortThreeACB() {
-    T data[] = { "a", "c", "b" };
-    T expected[] = { "a", "b", "c" };
-
-    tester.test(data, expected);
-  }
-
-  void sortThreeBAC() {
-    T data[] = { "b", "a", "c" };
-    T expected[] = { "a", "b", "c" };
-
-    tester.test(data, expected);
-  }
-
-  void sortThreeBCA() {
-    T data[] = { "b", "c", "a" };
-    T expected[] = { "a", "b", "c" };
-
-    tester.test(data, expected);
-  }
-
-  void sortThreeCAB() {
-    T data[] = { "c", "a", "b" };
-    T expected[] = { "a", "b", "c" };
-
-    tester.test(data, expected);
-  }
-
-  void sortThreeCBA() { // reverse
-    T data[] = { "c", "b", "a" };
-    T expected[] = { "a", "b", "c" };
-
-    tester.test(data, expected);
-  }
-
-  /*
-   * Duplicates
-   */
-
-  void sortTwoOfTwoEqual() {
-    T data[] = { "a", "a" };
-    T expected[] = { "a", "a" };
-
-    tester.test(data, expected);
-  }
-
-  void sortTwoOfThreeEqual() {
-    T data[] = { "b", "a", "b" };
-    T expected[] = { "a", "b", "b" };
-
-    tester.test(data, expected);
-  }
-
-  void sortThreeOfThreeEqual() {
-    T data[] = { "a", "a", "a" };
-    T expected[] = { "a", "a", "a" };
-
-    tester.test(data, expected);
-  }
-
-  /*
-   * Other tests
-   */
-  // Note: We already tested copies of the same stirng
-
-  void sortEmptyFirst() {
-    T data[] = { "a", empty };
-    T expected[] = { empty, "a" };
-
-    tester.test(data, expected);
-  }    
-
-  void sortShorterMatchFirst() {
-    T data[] = { "aaaaaa", "aa" };
-    T expected[] = { "aa", "aaaaaa" };
-
-    tester.test(data, expected);
-  }    
-
-  void sortFirstCharsFirst() {
-    T data[] = { "ab", "aaaaaa" };
-    T expected[] = { "aaaaaa", "ab" };
-
-    tester.test(data, expected);
-  }    
-
-  void sortUppercaseFirst() {
-    T data[] = { "aaaaaa", "aA" };
-    T expected[] = { "aA", "aaaaaa" };
-
-    tester.test(data, expected);
-  }    
-
-  void sortNumbersFirst() {
-    T data[] = { "a", "A", "1" };
-    T expected[] = { "1", "A", "a" };
-
-    tester.test(data, expected);
-  }
-
-  void sortNumbersAsStrings() {
-    T data[] = { "100", "99", "10", "1", "11" };
-    T expected[] = { "1", "10", "100", "11", "99" };
-
-    tester.test(data, expected);
-  }
-
-  void sortSpecial() {
-    T data[] = { "a\"b", "a^b", "a(b", "aab", "a%b", "aAb" };
-    T expected[] = { "a\"b", "a%b", "a(b", "aAb", "a^b", "aab" };
-
-    tester.test(data, expected);
-  }
-
-  void sortLargeA() {
-    T data[] = { "apple", empty, "100", "Apple", empty, "9", "App", "1", "9", "APPLE", "apples and oranges" };
-    T expected[] = { empty, empty, "1", "100", "9", "9", "APPLE", "App", "Apple", "apple", "apples and oranges" };
-
-    tester.test(data, expected);
-  }
-
-private:
-  /** Known empty string value */
-  const T empty;
-};
-
-/*
- * Templated test cases
- */
-
-#include <string>
-
-#include "Predicates.h"
-#include "ListMergeSort.h"
+using Experiment::DoubleLinkedList;
 using Experiment::ListMergeSort;
 using Experiment::PointerLess;
 
-typedef SortStringTest<std::string, ArrayTester<std::string, ListMergeSort<std::string> > > ListMergeSortStringArrayTest;
-CPPUNIT_TEST_SUITE_REGISTRATION(ListMergeSortStringArrayTest);
+/** Template test::Test providing the test data string-based Sort
+ * algorithms.
+ *
+ * This is used by creating a typedef with the template parameters specified and
+ * providing it to googletest definition later.
+ *
+ * This class is applied to a Tester type, which must have a
+ * type Tester::value_type.
+ * 
+ * \tparam Tester the container-specific test code
+ */
+template<class Tester>
+class SortStringTest : public testing::Test {
+protected:
+  typedef Tester tester_type;
+  typedef typename Tester::value_type value_type;
 
-typedef SortStringTest<std::string, ArrayOfPointerTester<std::string, ListMergeSort<std::string*, std::string**, PointerLess<std::string> > > > ListMergeSortStringArrayOfPointerTest;
-CPPUNIT_TEST_SUITE_REGISTRATION(ListMergeSortStringArrayOfPointerTest);
+  /** Known empty string value */
+  const value_type empty;
 
-typedef SortStringTest<std::string, VectorTester<std::string, ListMergeSort<std::string, std::vector<std::string>::iterator> > > ListMergeSortStringVectorTest;
-CPPUNIT_TEST_SUITE_REGISTRATION(ListMergeSortStringVectorTest);
+  tester_type tester;
 
-typedef SortStringTest<std::string, DoubleLinkedListTester<std::string, ListMergeSort<std::string, DoubleLinkedList<std::string>::iterator> > > ListMergeSortStringDoubleLinkedListTest;
-CPPUNIT_TEST_SUITE_REGISTRATION(ListMergeSortStringDoubleLinkedListTest);
+  // All constructors, destructors, and assignment operators = default
+};
+TYPED_TEST_SUITE_P(SortStringTest);
+
+/*
+  * Trivial Cases
+  */
+TYPED_TEST_P(SortStringTest, sortNone) {
+  this->tester.testEmpty();
+}
+
+TYPED_TEST_P(SortStringTest, sortOne) {
+  typename TestFixture::value_type data[] = { "a" };
+  typename TestFixture::value_type expected[] = { "a" };
+
+  this->tester.test(data, expected);
+}
+
+/*
+  * Two elements
+  */
+
+TYPED_TEST_P(SortStringTest, sortTwoIn) {
+  typename TestFixture::value_type data[] = { "a", "b" };
+  typename TestFixture::value_type expected[] = { "a", "b" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortTwoRev) {
+  typename TestFixture::value_type data[] = { "b", "a" };
+  typename TestFixture::value_type expected[] = { "a", "b" };
+
+  this->tester.test(data, expected);
+}
+
+/*
+  * Three unique element permutations
+  */
+TYPED_TEST_P(SortStringTest, sortThreeABC) { // In Order
+  typename TestFixture::value_type data[] = { "a", "b", "c" };
+  typename TestFixture::value_type expected[] = { "a", "b", "c" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortThreeACB) {
+  typename TestFixture::value_type data[] = { "a", "c", "b" };
+  typename TestFixture::value_type expected[] = { "a", "b", "c" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortThreeBAC) {
+  typename TestFixture::value_type data[] = { "b", "a", "c" };
+  typename TestFixture::value_type expected[] = { "a", "b", "c" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortThreeBCA) {
+  typename TestFixture::value_type data[] = { "b", "c", "a" };
+  typename TestFixture::value_type expected[] = { "a", "b", "c" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortThreeCAB) {
+  typename TestFixture::value_type data[] = { "c", "a", "b" };
+  typename TestFixture::value_type expected[] = { "a", "b", "c" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortThreeCBA) { // reverse
+  typename TestFixture::value_type data[] = { "c", "b", "a" };
+  typename TestFixture::value_type expected[] = { "a", "b", "c" };
+
+  this->tester.test(data, expected);
+}
+
+/*
+  * Duplicates
+  */
+
+TYPED_TEST_P(SortStringTest, sortTwoOfTwoEqual) {
+  typename TestFixture::value_type data[] = { "a", "a" };
+  typename TestFixture::value_type expected[] = { "a", "a" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortTwoOfThreeEqual) {
+  typename TestFixture::value_type data[] = { "b", "a", "b" };
+  typename TestFixture::value_type expected[] = { "a", "b", "b" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortThreeOfThreeEqual) {
+  typename TestFixture::value_type data[] = { "a", "a", "a" };
+  typename TestFixture::value_type expected[] = { "a", "a", "a" };
+
+  this->tester.test(data, expected);
+}
+
+/*
+  * Other tests
+  */
+// Note: We already tested copies of the same stirng
+
+TYPED_TEST_P(SortStringTest, sortEmptyFirst) {
+  typename TestFixture::value_type data[] = { "a", this->empty };
+  typename TestFixture::value_type expected[] = { this->empty, "a" };
+
+  this->tester.test(data, expected);
+}    
+
+TYPED_TEST_P(SortStringTest, sortShorterMatchFirst) {
+  typename TestFixture::value_type data[] = { "aaaaaa", "aa" };
+  typename TestFixture::value_type expected[] = { "aa", "aaaaaa" };
+
+  this->tester.test(data, expected);
+}    
+
+TYPED_TEST_P(SortStringTest, sortFirstCharsFirst) {
+  typename TestFixture::value_type data[] = { "ab", "aaaaaa" };
+  typename TestFixture::value_type expected[] = { "aaaaaa", "ab" };
+
+  this->tester.test(data, expected);
+}    
+
+TYPED_TEST_P(SortStringTest, sortUppercaseFirst) {
+  typename TestFixture::value_type data[] = { "aaaaaa", "aA" };
+  typename TestFixture::value_type expected[] = { "aA", "aaaaaa" };
+
+  this->tester.test(data, expected);
+}    
+
+TYPED_TEST_P(SortStringTest, sortNumbersFirst) {
+  typename TestFixture::value_type data[] = { "a", "A", "1" };
+  typename TestFixture::value_type expected[] = { "1", "A", "a" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortNumbersAsStrings) {
+  typename TestFixture::value_type data[] = { "100", "99", "10", "1", "11" };
+  typename TestFixture::value_type expected[] = { "1", "10", "100", "11", "99" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortSpecial) {
+  typename TestFixture::value_type data[] = { "a\"b", "a^b", "a(b", "aab", "a%b", "aAb" };
+  typename TestFixture::value_type expected[] = { "a\"b", "a%b", "a(b", "aAb", "a^b", "aab" };
+
+  this->tester.test(data, expected);
+}
+
+TYPED_TEST_P(SortStringTest, sortLargeA) {
+  typename TestFixture::value_type data[] = { "apple", this->empty, "100", "Apple", this->empty, "9", "App", "1", "9", "APPLE", "apples and oranges" };
+  typename TestFixture::value_type expected[] = { this->empty, this->empty, "1", "100", "9", "9", "APPLE", "App", "Apple", "apple", "apples and oranges" };
+
+  this->tester.test(data, expected);
+}
+
+REGISTER_TYPED_TEST_SUITE_P(SortStringTest,
+  sortNone,
+  sortOne,
+
+  sortTwoIn,
+  sortTwoRev,
+
+  sortThreeABC,
+  sortThreeACB,
+  sortThreeBAC,
+  sortThreeBCA,
+  sortThreeCAB,
+  sortThreeCBA,
+
+  sortTwoOfTwoEqual, 
+  sortTwoOfThreeEqual, 
+  sortThreeOfThreeEqual, 
+
+  sortEmptyFirst,
+  sortShorterMatchFirst,
+  sortFirstCharsFirst,
+  sortUppercaseFirst,
+  sortNumbersFirst,
+  sortNumbersAsStrings,
+  sortSpecial,
+  sortLargeA
+);
+
+typedef testing::Types<
+  ArrayTester<std::string, ListMergeSort<std::string> >,
+  ArrayOfPointerTester<std::string, ListMergeSort<std::string*, std::string**, PointerLess<std::string> > >,
+  VectorTester<std::string, ListMergeSort<std::string, std::vector<std::string>::iterator> >,
+  DoubleLinkedListTester<std::string, ListMergeSort<std::string, DoubleLinkedList<std::string>::iterator> >
+> SortStringTestTypes;
+
+INSTANTIATE_TYPED_TEST_SUITE_P(
+  MainSortStringTest,
+  SortStringTest,
+  SortStringTestTypes);

@@ -4,7 +4,7 @@
 This page documents how we use the following tools:
 - GNU make
 - doxygen
-- cppunit
+- unit-test
 
 \note This page is not generally of use to the library user.
 
@@ -18,7 +18,7 @@ The top-level Makefile delegates the targets all, clean, cleaner and cleanest to
 
 The src/ Makefile builds the library.
 
-The cppunit/ Makefile builds a CppUnit test command.
+The test/ Makefile builds a unit-test command.
 
 The examples/ Makefile compiles each example file to help ensure they remain syntaticly valid.
 
@@ -31,7 +31,7 @@ Common GNU Make Targets:
 Top-Level Only GNU Make Targets:
 - runTest -- runs the test binary
 - doxygen -- builds doxygen documentation
-- build -- builds all source and doxygen documentation, and runs the CppUnit tests
+- world -- builds all source and doxygen documentation, and runs the unit tests
 
 \section doxygen Doxygen
 
@@ -41,8 +41,8 @@ We have a directory of .dox files, named dox/, to provide all of the documentati
 
 We have a directory of examples, named examples, to provide compiled (thus syntatically valid, examples.
 
-\section cppunit CppUnit
+\section unit-test Unit-Test
 
-We build CppUnit as a main function that links to the built library.  The library saves us from hacking around which "main" file to use.
+We build a unit-test with googletest using a main function from a googletest library.
 
 */

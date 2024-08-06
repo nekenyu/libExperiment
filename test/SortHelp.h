@@ -18,7 +18,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  * Helper file providing methods of testing Sort algorithms per container type
  */
 
-using Experiment::DoubleLinkedList;
+#include "DoubleLinkedList.h"
+
+#include "gtest/gtest.h"
 
 /** Template Test methods for array of type T to be sorted by Sort
  *
@@ -27,7 +29,9 @@ using Experiment::DoubleLinkedList;
  */
 template<class T, class Sort>
 class ArrayTester {
- public:
+public:
+  typedef T value_type;
+
   /** Test Sort of an empty container */
   void testEmpty() {
     T* array = NULL;
@@ -44,13 +48,13 @@ class ArrayTester {
    * \tparam length of data and expected
    */
   template<size_t length>
-    void test(T (&data)[length], T (&expected)[length]) {
+  void test(T (&data)[length], T (&expected)[length]) {
     Sort sort;
     sort.sort(data, data + length);
     
     // Assumes data type not susceptable to instability
     for(size_t index = 0; index < length; ++index) {
-      CPPUNIT_ASSERT_EQUAL(data[index], expected[index]);
+      EXPECT_EQ(data[index], expected[index]);
     }
   }
 };
@@ -62,7 +66,9 @@ class ArrayTester {
  */
 template<class T, class Sort>
 class ArrayOfPointerTester {
- public:
+public:
+  typedef T value_type;
+
   /** Test Sort of an empty container */
   void testEmpty() {
     T** arrayOfPointers = NULL;
@@ -80,7 +86,7 @@ class ArrayOfPointerTester {
    * \tparam length of data and expected
    */
   template<size_t length>
-    void test(T (&data)[length], T (&expected)[length]) {
+  void test(T (&data)[length], T (&expected)[length]) {
     // Initialize Array Of Pointers
     T* arrayOfPointers[length];
     {
@@ -97,7 +103,7 @@ class ArrayOfPointerTester {
     // Test Array Of Pointers
     // Assumes data type not susceptable to instability
     for(size_t index = 0; index < length; ++index) {
-      CPPUNIT_ASSERT_EQUAL(*arrayOfPointers[index], expected[index]);
+      EXPECT_EQ(*arrayOfPointers[index], expected[index]);
     }
 
     // Delete pointers in arrayOfPointers
@@ -116,8 +122,10 @@ class ArrayOfPointerTester {
  * \tparam Sort Sort Algorithm to use
  */
 template<class T, class Sort>
-  class VectorTester {
- public:
+class VectorTester {
+public:
+  typedef T value_type;
+
   /** Test Sort of an empty container */
   void testEmpty() {
     std::vector<T> dataVec;
@@ -125,7 +133,7 @@ template<class T, class Sort>
     Sort sort;
     sort.sort(dataVec.begin(), dataVec.end());
 
-    CPPUNIT_ASSERT(dataVec.empty());
+    EXPECT_TRUE(dataVec.empty());
   }
 
   /** Test with input data to match expected
@@ -136,7 +144,7 @@ template<class T, class Sort>
    * \tparam length of data and expected
    */
   template<size_t length>
-    void test(T (&data)[length], T (&expected)[length]) {
+  void test(T (&data)[length], T (&expected)[length]) {
     std::vector<T> dataVec;
     dataVec.insert(dataVec.begin(), data, data + length);
 
@@ -147,11 +155,11 @@ template<class T, class Sort>
     typename std::vector<T>::iterator dataIter = dataVec.begin();
     T* expectedIter = expected;
     for( ; dataVec.end() != dataIter && (expected + length) != expectedIter; ++dataIter, ++expectedIter) {
-      CPPUNIT_ASSERT_EQUAL(*dataIter, *expectedIter);
+      EXPECT_EQ(*dataIter, *expectedIter);
     }
  
-    CPPUNIT_ASSERT(dataVec.end() == dataIter);
-    CPPUNIT_ASSERT(expected + length == expectedIter);
+    EXPECT_EQ(dataVec.end(), dataIter);
+    EXPECT_EQ(expected + length, expectedIter);
   }
 };
 
@@ -161,16 +169,18 @@ template<class T, class Sort>
  * \tparam Sort Sort Algorithm to use
  */
 template<class T, class Sort>
-  class DoubleLinkedListTester {
- public:
+class DoubleLinkedListTester {
+public:
+  typedef T value_type;
+
   /** Test Sort of an empty container */
   void testEmpty() {
-    DoubleLinkedList<T> dataList;
+    Experiment::DoubleLinkedList<T> dataList;
     
     Sort sort;
     sort.sort(dataList.begin(), dataList.end());
     
-    CPPUNIT_ASSERT(dataList.isEmpty());
+    EXPECT_TRUE(dataList.isEmpty());
   }
 
   /** Test with input data to match expected
@@ -181,8 +191,8 @@ template<class T, class Sort>
    * \tparam length of data and expected
    */
   template<size_t length>
-    void test(T (&data)[length], T (&expected)[length]) {
-    DoubleLinkedList<T> dataList;
+  void test(T (&data)[length], T (&expected)[length]) {
+    Experiment::DoubleLinkedList<T> dataList;
     for(T* iter = data; (data + length) != iter; ++iter) {
       dataList.push_back(*iter);
     }
@@ -191,14 +201,14 @@ template<class T, class Sort>
     sort.sort(dataList.begin(), dataList.end());
 
     // Assumes data type not susceptable to instability
-    typename DoubleLinkedList<T>::iterator dataIter = dataList.begin();
+    typename Experiment::DoubleLinkedList<T>::iterator dataIter = dataList.begin();
     T* expectedIter = expected;
     for( ; dataList.end() != dataIter && (expected + length) != expectedIter; ++dataIter, ++expectedIter) {
-      CPPUNIT_ASSERT_EQUAL(*dataIter, *expectedIter);
+      EXPECT_EQ(*dataIter, *expectedIter);
     }
  
-    CPPUNIT_ASSERT(dataList.end() == dataIter);
-    CPPUNIT_ASSERT(expected + length == expectedIter);
+    EXPECT_EQ(dataList.end(), dataIter);
+    EXPECT_EQ(expected + length,  expectedIter);
   }
 };
 

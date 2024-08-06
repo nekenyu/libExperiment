@@ -43,7 +43,7 @@ cleanest:
 
 .PHONY: runTest
 runTest: all
-	build/test/cppunit-test.exe
+	build/test/unit-test.exe
 
 .PHONY: world
 world: all docs runTest
