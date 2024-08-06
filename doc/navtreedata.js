@@ -35,7 +35,7 @@ var NAVTREE =
     ] ],
     [ "Support Tools", "support-tools.html", [
       [ "GNU Make", "support-tools.html#gnu-make", null ],
-      [ "Doxygen", "support-tools.html#doxygen", null ],
+      [ "Docs", "support-tools.html#docs", null ],
       [ "Unit-Test", "support-tools.html#unit-test", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
